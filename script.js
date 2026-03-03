@@ -66,23 +66,41 @@ const information = {
         title: "Остров Аркадия",
         desc: "Где-то в океане существует Великий остров Аркадия, на котором происходит всё веселье. На данный момент неизвестно его настоящее название и точное местоположение.",
         picture: ["images/img8.jpg"]
+    },
+    file11: {
+        title: "Песня про газика",
+        desc: "Возле школы выпал град - это Газик виноват.<br>" +
+            "Не читается лит-ра - это Газика вина.<br>" +
+            "Миша чай радмирин пьет - это Газик в глотку льет.<br>" +
+            "Под лицеем ветер дует - Газик видимо колдует",
+        tags: ["руслан", "газимов"]
+    },
+    file12: {
+        title: "Юра написал докладную на Радмира, Лукащуков и Тиханькина",
+        desc: "Юрец обвиняет четверых людей в том, что они поздравляли его с днем дурака<br>(это правда). Оригинальное сообщение ниже.",
+        picture: ["images/img9.jpg"],
+        tags: ["волков", "юрий"]
     }
 }
 
 function search() {
     const inputField = document.getElementById("inputSearch");
     const searchValue = inputField.value.toLowerCase().trim();
-    let results = [];
+    let results = [], searchedFiles = [];
 
     function createFiles(obj) {
-        if (!('picture' in obj)) {
-            results.push(`<div class='block'><h1>${obj.title}</h1><p>${obj.desc}</p></div>`);
-        } else {
-            let image_block = ``;
-            for (let i in obj.picture) {
-                image_block = image_block + `<img src="${obj.picture[i]}" alt="" class="infImage">`
+        if (!(searchedFiles.includes(obj))) {
+            if (!('picture' in obj)) {
+                results.push(`<div class='block'><h1>${obj.title}</h1><p>${obj.desc}</p></div>`);
+                searchedFiles.push(obj)
+            } else {
+                let image_block = ``;
+                for (let i in obj.picture) {
+                    image_block = image_block + `<img src="${obj.picture[i]}" alt="" class="infImage">`
+                }
+                results.push(`<div class='block'><h1>${obj.title}</h1><p>${obj.desc}</p><div class="imageBlock">${image_block}</div></div>`);
+                searchedFiles.push(obj)
             }
-            results.push(`<div class='block'><h1>${obj.title}</h1><p>${obj.desc}</p><div class="imageBlock">${image_block}</div></div>`);
         }
     }
 
