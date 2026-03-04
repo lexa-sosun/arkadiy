@@ -38,6 +38,13 @@ h4.header {
     display: grid;
     justify-items: center;
 }
+.imageBlock {
+    display: grid;
+    justify-items: center;
+}
+.infImage {
+    margin-bottom: 15px;
+}
 .nothing {
     margin: 50px;
     font-size: 25px;
@@ -48,4 +55,8 @@ h4.header {
     margin-top: 45px;
     width: 700px;
     border-radius: 15px;
+}
+#count {
+    margin-bottom: -30px;
+    font-size: 25px;
 }
