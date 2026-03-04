@@ -199,10 +199,10 @@ function search() {
     }
 
     const searchContent = document.getElementById("searchContent");
-    const counter = document.getElementById("count")
+    // const counter = document.getElementById("count")
 
     if (results.length > 0 && searchValue) {
-        counter.innerHTML = "<p>Найдено результатов: " + results.length + "</p>"
+        // counter.innerHTML = "<p>Найдено результатов: " + results.length + "</p>"
         searchContent.innerHTML = results.join("");
     } else {
         searchContent.innerHTML = "<p class='nothing'>Ничего не найдено</p>";
