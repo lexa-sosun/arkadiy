@@ -79,7 +79,7 @@ const information = {
     },
     file12: {
         title: "Юра написал докладную на Радмира, Лукащуков и Тиханькина",
-        desc: "Юрец обвиняет четверых людей в том, что они поздравляли его с днем дурака<br>(это правда). Оригинальное сообщение ниже.",
+        desc: "Юрец обвиняет четверых людей в том, что они поздравляли его с днем дурака (это правда). Оригинальное сообщение ниже.",
         picture: ["images/img9.jpg"],
         tags: ["волков", "юрий"]
     },
@@ -123,7 +123,7 @@ const information = {
     },
     file19: {
         title: "Два дауна",
-        desc: "Нурисламов Русланчик и Леша снова делают всякую херню и смеются с этого. База 109ых",
+        desc: "Нурисламов Русланчик и Леша снова делают всякую херню и смеются с этого. База 109ой",
         tags: ["нурисламов", "нурисламов руслан", "руслан", "леша", "алексей"],
         picture: ["images/img15.jpg"]
     },
@@ -234,10 +234,24 @@ const information = {
     }
 }
 
+const urlParams = new URLSearchParams(window.location.search);
+
+function deleteNullParam() {
+    let url = new URL(window.location.href)
+    url.searchParams.delete('search');
+    window.history.pushState({}, '', url);
+}
+
 function search() {
     const inputField = document.getElementById("inputSearch");
     const searchValue = inputField.value.toLowerCase().trim();
     let results = [], searchedFiles = [];
+
+    const currentUrl = window.location.href;
+    let url = new URL(currentUrl)
+    url.searchParams.set('search', searchValue);
+    window.history.pushState({}, '', url);
+
 
     function createFiles(obj) {
         if (!(searchedFiles.includes(obj))) {
@@ -272,9 +286,19 @@ function search() {
     results.reverse();
 
     if (results.length > 0 && searchValue) {
-        // counter.innerHTML = "<p>Найдено результатов: " + results.length + "</p>";
+        // counter.innerHTML = `<p>Найдено результатов: ${results.length}</p>`;
         searchContent.innerHTML = results.join("");
     } else {
         searchContent.innerHTML = "<p class='nothing'>Ничего не найдено</p>";
     }
+}
+
+let searchParam = urlParams.get('search');
+if (searchParam) {
+    window.addEventListener('load', function() {
+        document.getElementById("inputSearch").value = searchParam;
+        search();
+    });
+} else {
+    deleteNullParam();
 }
