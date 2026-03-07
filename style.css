@@ -6,6 +6,16 @@
 }
 body {
     text-align: center;
+    transition: background-color 0.3s ease;
+}
+body.light-theme {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
 }
 h1.header {
     font-size: 80px;
@@ -15,25 +25,55 @@ h4.header {
     font-size: 25px;
     margin-top: 15px;
 }
+
 #inputSearch {
     border-radius: 15px;
     font-size: 30px;
     padding: 10px;
+    transition: background-color 0.3s ease;
+    outline: none;
 }
+body.light-theme label input#inputSearch {
+    border: #575757 solid 3px;
+    background-color: #fdfdfd;
+    color: black;
+}
+body.dark-theme label input#inputSearch {
+    border: #a8a8a8 solid 3px;
+    background-color: #020202;
+    color: white;
+}
+
 .searchButton {
     border-radius: 15px;
     font-size: 30px;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    border: #575757 solid 3px;
 }
-.searchButton:hover {
+body.light-theme label button.searchButton {
+    border: #575757 solid 3px;
+    background-color: #f5f5f5;
+    color: black;
+}
+body.light-theme label button.searchButton:hover {
     background-color: #d9d7d7;
 }
-.searchButton:active {
+body.light-theme label button.searchButton:active {
     border-color: #3a3a3a;
 }
+body.dark-theme label button.searchButton {
+    border: #a8a8a8 solid 3px;
+    background-color: #282828;
+    color: white;
+}
+body.dark-theme label button.searchButton:hover {
+    background-color: #0a0a0a;
+}
+body.dark-theme label button.searchButton:active {
+    border-color: #c7c7c7;
+}
+
 #searchContent {
     display: grid;
     justify-items: center;
@@ -49,13 +89,51 @@ h4.header {
     margin: 50px;
     font-size: 25px;
 }
+
 .block {
-    background-color: #e5e5e5;
     padding: 15px;
     margin-top: 45px;
     width: 700px;
     border-radius: 15px;
+    transition: background-color 0.3s ease;
 }
+body.light-theme div#searchContent div.block {
+    background-color: #e5e5e5;
+}
+body.dark-theme div#searchContent div.block {
+    background-color: #252525;
+}
+
 .desc {
     font-size: 20px;
+}
+div.themeChanger {
+    position: relative;
+}
+button.themeChanger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: -45px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: solid 0;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+body.light-theme div div.themeChanger button.themeChanger {
+    background-color: #d2d2d2;
+}
+body.dark-theme div div.themeChanger button.themeChanger {
+    background-color: #343434;
+}
+body.light-theme div div.themeChanger button.themeChanger:hover {
+    background-color: #b4b4b4;
+}
+body.dark-theme div div.themeChanger button.themeChanger:hover {
+    background-color: #4b4b4b;
 }

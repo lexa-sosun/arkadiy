@@ -10,8 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="icons/favicon.ico" type="x/icon">
 </head>
-<body>
+<body class="light-theme">
 <div>
+    <div class="themeChanger">
+        <button id="themeToggle" class="themeChanger" onclick="changeTheme()"><img src="icons/dark.png" alt=""></button>
+    </div>
     <h1 class="header">Файлы Львова Аркадия</h1>
     <h4 class="header">Самый надежный поиск из базы файлов Аркадия</h4>
 </div>
@@ -20,6 +23,6 @@
     <button onclick="search()" class="searchButton">Искать</button>
 </label>
 <div id="searchContent"></div>
-
+<script src="theme.js"></script>
 </body>
 </html>
