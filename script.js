@@ -231,6 +231,19 @@ const information = {
             "День Двойников, что также наталкивает на различные мысли",
         picture: ["images/img33.jpg"],
         tags: ["леша", "алексей", "гитлер"]
+    },
+    file37: {
+        title: "Аскар Бекбулатович умер",
+        desc: "10 марта 2026 года глава картеля «Толстое Яйцо» скончался прямо во время урока от передоза.",
+        picture: ["images/img34.jpg"],
+        tags: ["бикбулатов"]
+    },
+    file38: {
+        title: "Тиханькин Артем теребонькает под партой",
+        desc: "Тиханькин прямо на уроке истории тихонько (потому что тиханькин) достал свою волыну и начал наяривать на " +
+            "Амелию. Позже выяснилось, что он это делает регулярно.",
+        picture: ["images/img35.jpg"],
+        tags: ["тиханкин", "амелия"]
     }
 }
 
@@ -249,7 +262,7 @@ function search() {
 
     const currentUrl = window.location.href;
     let url = new URL(currentUrl)
-    url.searchParams.set('search', searchValue);
+    url.searchParams.set('search', inputField.value);
     window.history.pushState({}, '', url);
 
 
