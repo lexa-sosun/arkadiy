@@ -244,6 +244,58 @@ const information = {
             "Амелию. Позже выяснилось, что он это делает регулярно.",
         picture: ["images/img35.jpg"],
         tags: ["тиханкин", "амелия"]
+    },
+    file39: {
+        title: "Рамиль Вилка и Аркадий Попа",
+        desc: "Прямо сейчас идет продажа двух людей в анальное рабство. Это Рамиль Вилка и Аркадий Попа.",
+        picture: ["images/img36.jpg"]
+    },
+    file40: {
+        title: "Леонард чпокнул свою рыбу",
+        desc: "Леонард прямо на уроке не сдержался и чпокнул свою рыбу. Теперь она выглядит вот так (фото). Это ужас, но ничего " +
+            "не поделаешь, у человека такие фетиши.",
+        picture: ["images/img37.jpg"]
+    },
+    file41: {
+        title: "Яна заявила о своем положении",
+        desc: "Яна решил рассказать о своем нынешнем положении. Цитата: «[Я] самая главная лесби и шл■■а класса».",
+        picture: ["images/img38.jpg"]
+    },
+    file42: {
+        title: "Трио бравл старсеров",
+        desc: "Было запечатлено легендарное трио бравл старсеров. В трио входили: Газимов Руслан, Бекбулатов Аскарб и Айдар. " +
+            "Фотографа отпетушили, но фотография все равно сохранилось.",
+        picture: ["images/img39.jpg"],
+        tags: ["руслан", "газимов", "айдар", "аскар", "бикбулатов"]
+    },
+    file43: {
+        title: "Рамильку отпетушили пять бомжей",
+        desc: "В самый обычный день Рамиль вышел из дома, чтобы выкинуть мусор. Но вдруг, когда он уже подходил к помойке " +
+            "на него из-за угла выскочили пять голых бомжей и начали смайно чпокать его во все дыры. Ужассс.",
+        picture: ["images/img40.jpg"]
+    },
+    file44: {
+        title: "Леша стал шпионом",
+        desc: "Леша стал шпином омайгад. И самое страшное что он может быть одним из нас или сас...",
+        picture: ["images/img41.jpg"],
+        tags: ["алексей"]
+    },
+    file45: {
+        title: "Аскар петушит всех подряд",
+        desc: "У Аскара началось весеннее обострение и он начал петушить вообще всех подряд. Все его боялись и он всех чпокал как орешки.",
+        picture: ["images/img42.jpg"],
+        tags: ["аскар", "бикбулатов"]
+    },
+    file46: {
+        title: "Макар - это Макан",
+        desc: "Во время урока Макарий не сдержался и зачитал реп. Ама рокстар попстар йоу я беру в рот стар",
+        picture: ["images/img43.jpg"]
+    },
+    file47: {
+        title: "Радмира решили наказать",
+        desc: "Однажды Радмира решили наказать за все его грязные дела и оттрахали его толпой жестко. Он кричал: «Мама " +
+            "я тебя люблю я не хочу умирать», но его рот заткнули огромным чл.",
+        picture: ["images/img43.jpg"]
     }
 }
 
@@ -257,7 +309,7 @@ function deleteNullParam() {
 
 function search() {
     const inputField = document.getElementById("inputSearch");
-    const searchValue = inputField.value.toLowerCase().trim();
+    const searchValue = inputField.value.toLowerCase().trim().replace(/ё/g, "е");
     let results = [], searchedFiles = [];
 
     const currentUrl = window.location.href;
@@ -267,7 +319,7 @@ function search() {
 
 
     function createFiles(obj) {
-        if (!(searchedFiles.includes(obj))) {
+        if ((!(searchedFiles.includes(obj))) || (!searchValue)) {
             if (!('picture' in obj)) {
                 results.push(`<div class='block'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p></div>`);
                 searchedFiles.push(obj)
@@ -284,13 +336,17 @@ function search() {
 
     for (let key in information) {
         let obj = information[key];
-        if (obj.title.toLowerCase().includes(searchValue)) {
-            createFiles(obj)
-        }
-        if ('tags' in obj) {
-            if (obj.tags.includes(searchValue)) {
+        if (searchValue) {
+            if (obj.title.toLowerCase().includes(searchValue)) {
                 createFiles(obj)
             }
+            if ('tags' in obj) {
+                if (obj.tags.includes(searchValue)) {
+                    createFiles(obj)
+                }
+            }
+        } else {
+            createFiles(obj)
         }
     }
 
@@ -298,7 +354,7 @@ function search() {
     // const counter = document.getElementById("count");
     results.reverse();
 
-    if (results.length > 0 && searchValue) {
+    if (results.length > 0) {
         // counter.innerHTML = `<p>Найдено результатов: ${results.length}</p>`;
         searchContent.innerHTML = results.join("");
     } else {
@@ -315,3 +371,5 @@ if (searchParam) {
 } else {
     deleteNullParam();
 }
+
+document.addEventListener('keydown', function(event) { if (event.key === 'Enter') { search() } });
