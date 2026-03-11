@@ -296,6 +296,11 @@ const information = {
         desc: "Однажды Радмира решили наказать за все его грязные дела и оттрахали его толпой жестко. Он кричал: «Мама " +
             "я тебя люблю я не хочу умирать», но его рот заткнули огромным чл.",
         picture: ["images/img44.jpg"]
+    },
+    file48: {
+        title: "До Радмира домогается Михаил",
+        desc: "Радмир спокойно сидел на перемене, как вдруг до него стал домогаться Миша. К счастью, видеоматериал сохранился на камере Радмира",
+        video: ["videos/vid0.mp4"]
     }
 }
 
@@ -320,15 +325,42 @@ function search() {
 
     function createFiles(obj) {
         if ((!(searchedFiles.includes(obj))) || (!searchValue)) {
-            if (!('picture' in obj)) {
-                results.push(`<div class='block'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p></div>`);
+            if ('picture' in obj && 'video' in obj) {
+                let video_block = ``;
+                for (let i in obj.picture) {
+                    video_block = video_block + `<div class="video-container">
+                        <img id="videoPreview" src="interface/video_wait.jpg" alt="">
+                        <video src="${obj.video[i]}" width="600" controls class="infVideo" id="video">error</video>
+                        </div>`
+                }
+
+                let image_block = ``;
+                for (let i in obj.picture) {
+                    image_block = image_block + `<img src="${obj.picture[i]}" alt="" class="infImage">`
+                }
+                results.push(`<div class='block'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p><div class="videoBlock">${video_block}</div>
+                                <div class="imageBlock">${image_block}</div></div>`);
                 searchedFiles.push(obj)
-            } else {
+
+            } else if ('video' in obj) {
+                let video_block = ``;
+                for (let i in obj.video) {
+                    video_block = video_block + `<div class="video-container">
+                        <img id="videoPreview" src="interface/video_wait.jpg" alt="">
+                        <video src="${obj.video[i]}" width="600" controls class="infVideo" id="video">error</video>
+                        </div>`
+                }
+                results.push(`<div class='block'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p><div class="videoBlock">${video_block}</div></div>`);
+                searchedFiles.push(obj)
+            } else if ('picture' in obj) {
                 let image_block = ``;
                 for (let i in obj.picture) {
                     image_block = image_block + `<img src="${obj.picture[i]}" alt="" class="infImage">`
                 }
                 results.push(`<div class='block'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p><div class="imageBlock">${image_block}</div></div>`);
+                searchedFiles.push(obj)
+            } else {
+                results.push(`<div class='block'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p></div>`);
                 searchedFiles.push(obj)
             }
         }
@@ -360,6 +392,15 @@ function search() {
     } else {
         searchContent.innerHTML = "<p class='nothing'>Ничего не найдено</p>";
     }
+
+    const video = document.getElementById('video');
+    const preview = document.getElementById('videoPreview');
+
+    preview.style.display = 'block';
+
+    video.addEventListener('canplay', function() {
+        preview.style.display = 'none';
+    });
 }
 
 let searchParam = urlParams.get('search');
