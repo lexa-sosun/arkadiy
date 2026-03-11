@@ -50,8 +50,8 @@ const information = {
             "обратное. Однако, видео было утеряно в глубинах интернета и, вероятно, удалено. Возможно, в этом замешан " +
             "сам Михаил дабы спрятать неугодный материал. <br>" +
             "[Изменено]: ТО САМОЕ ВИДЕО ВСЕ ТАКИ БЫЛО НАЙДЕНО. Спасибо огромное Нурисламову Руслану!",
-        picture: ["images/img5.jpg"],
         video: ["videos/vid1.mp4"],
+        picture: ["images/img5.jpg"],
         tags: ["михаил"]
     },
     file8: {
@@ -402,16 +402,19 @@ function search() {
     url.searchParams.set('search', inputField.value);
     window.history.pushState({}, '', url);
 
+    let unique = 0;
+
 
     function createFiles(obj) {
         if ((!(searchedFiles.includes(obj))) || (!searchValue)) {
             if ('picture' in obj && 'video' in obj) {
                 let video_block = ``;
-                for (let i in obj.picture) {
+                for (let i in obj.video) {
                     video_block = video_block + `<div class="video-container">
-                        <img id="videoPreview" src="interface/video_wait.jpg" alt="">
-                        <video width="600" controls class="infVideo" id="video"><source src="${obj.video[i]}" type="video/mp4" />error</video>
+                        <img id="videoPreview${unique}" src="interface/video_wait.jpg" alt="">
+                        <video width="600" controls class="infVideo" id="video${unique}"><source src="${obj.video[i]}" type="video/mp4" />error</video>
                         </div>`
+                    unique++
                 }
 
                 let image_block = ``;
@@ -426,9 +429,10 @@ function search() {
                 let video_block = ``;
                 for (let i in obj.video) {
                     video_block = video_block + `<div class="video-container">
-                        <img id="videoPreview" src="interface/video_wait.jpg" alt="">
-                        <video width="600" controls class="infVideo" id="video"><source src="${obj.video[i]}" type="video/mp4" />error</video>
+                        <img id="videoPreview${unique}" src="interface/video_wait.jpg" alt="">
+                        <video width="600" controls class="infVideo" id="video${unique}"><source src="${obj.video[i]}" type="video/mp4" />error</video>
                         </div>`
+                    unique++
                 }
                 results.push(`<div class='block'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p><div class="videoBlock">${video_block}</div></div>`);
                 searchedFiles.push(obj)
@@ -473,14 +477,18 @@ function search() {
         searchContent.innerHTML = "<p class='nothing'>Ничего не найдено</p>";
     }
 
-    const video = document.getElementById('video');
-    const preview = document.getElementById('videoPreview');
+    for (unique < 1; unique--;) {
+        const video = document.getElementById(`video${unique}`);
+        const preview = document.getElementById(`videoPreview${unique}`);
 
-    preview.style.display = 'block';
+        if (video) {
+            preview.style.display = 'block';
 
-    video.addEventListener('canplay', function() {
-        preview.style.display = 'none';
-    });
+            video.addEventListener('canplay', function () {
+                preview.style.display = 'none';
+            });
+        }
+    }
 }
 
 let searchParam = urlParams.get('search');
