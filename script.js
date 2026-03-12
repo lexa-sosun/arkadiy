@@ -495,11 +495,15 @@ let searchParam = urlParams.get('search');
 if (searchParam) {
     window.addEventListener('load', function() {
         document.getElementById("inputSearch").value = searchParam;
-        document.activeElement.blur();
         search();
     });
 } else {
     deleteNullParam();
 }
 
-document.addEventListener('keydown', function(event) { if (event.key === 'Enter') { search() } });
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        document.activeElement.blur();
+        search();
+    }
+});
