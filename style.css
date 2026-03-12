@@ -161,6 +161,6 @@ body.dark-theme div div.themeChanger button.themeChanger:hover {
 video {
     width: 600px;
     height: auto;
-    position: relative;
+    position: absolute;
     z-index: 1;
 }
