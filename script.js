@@ -495,6 +495,7 @@ let searchParam = urlParams.get('search');
 if (searchParam) {
     window.addEventListener('load', function() {
         document.getElementById("inputSearch").value = searchParam;
+        document.activeElement.blur();
         search();
     });
 } else {
