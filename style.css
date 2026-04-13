@@ -27,51 +27,59 @@ h4.header {
 }
 
 #inputSearch {
-    border-radius: 15px;
+    border-radius: 20px 0 0 20px;
+    margin-right: -2px;
     font-size: 30px;
     padding: 10px;
+    overflow: hidden;
     transition: background-color 0.3s ease;
     outline: none;
 }
 body.light-theme label input#inputSearch {
     border: #575757 solid 3px;
+    border-right: 0;
     background-color: #fdfdfd;
     color: black;
 }
 body.dark-theme label input#inputSearch {
     border: #a8a8a8 solid 3px;
+    border-right: 0;
     background-color: #020202;
     color: white;
 }
 
 .searchButton {
-    border-radius: 15px;
+    border-radius: 0 20px 20px 0;
+    margin-left: -3px;
     font-size: 30px;
     padding: 10px;
     cursor: pointer;
+    overflow: hidden;
     transition: background-color 0.3s ease;
 }
 body.light-theme label button.searchButton {
     border: #575757 solid 3px;
+    border-left: 0;
     background-color: #f5f5f5;
     color: black;
 }
 body.light-theme label button.searchButton:hover {
-    background-color: #d9d7d7;
+    background-color: #e0e0e0;
 }
 body.light-theme label button.searchButton:active {
-    border-color: #3a3a3a;
+    background-color: #adadad;
 }
 body.dark-theme label button.searchButton {
     border: #a8a8a8 solid 3px;
     background-color: #282828;
+    border-left: 0;
     color: white;
 }
 body.dark-theme label button.searchButton:hover {
-    background-color: #0a0a0a;
+    background-color: #3d3d3d;
 }
 body.dark-theme label button.searchButton:active {
-    border-color: #c7c7c7;
+    background-color: #4f4f4f;
 }
 
 #searchContent {

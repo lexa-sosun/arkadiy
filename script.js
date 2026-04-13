@@ -464,6 +464,8 @@ const information = {
     }
 }
 
+const globalLength = Object.keys(information).length;
+
 const urlParams = new URLSearchParams(window.location.search);
 
 function deleteNullParam() {
@@ -550,7 +552,11 @@ function search() {
     const counter = document.getElementById("count");
     results.reverse();
 
-    if (results.length > 0) {
+    if (results.length === globalLength) {
+        counter.innerHTML = `<p>Все файлы (${globalLength})</p>`;
+        searchContent.innerHTML = results.join("");
+    }
+    else if (results.length > 0) {
         counter.innerHTML = `<p>Найдено результатов: ${results.length}</p>`;
         searchContent.innerHTML = results.join("");
     } else {
