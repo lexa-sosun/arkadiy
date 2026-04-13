@@ -554,6 +554,7 @@ function search() {
         counter.innerHTML = `<p>Найдено результатов: ${results.length}</p>`;
         searchContent.innerHTML = results.join("");
     } else {
+        counter.innerHTML = ``;
         searchContent.innerHTML = "<p class='nothing'>Ничего не найдено</p>";
     }
 
