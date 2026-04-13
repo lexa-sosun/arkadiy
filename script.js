@@ -436,7 +436,7 @@ const information = {
         video: ["videos/vid3.mp4"]
     },
     file70: {
-        title: "Газимов Руслан был на острове Эпшейна",
+        title: "Газимов Руслан был на острове Эпштейна",
         desc: "Шок! В сеть слили кадры Газика на острове Эпштейна! На фотографии видно, что Газимов пребывал там в качестве посетителя, а не ребенка...",
         picture: ["images/img66.jpg"]
     },
@@ -547,11 +547,11 @@ function search() {
     }
 
     const searchContent = document.getElementById("searchContent");
-    // const counter = document.getElementById("count");
+    const counter = document.getElementById("count");
     results.reverse();
 
     if (results.length > 0) {
-        // counter.innerHTML = `<p>Найдено результатов: ${results.length}</p>`;
+        counter.innerHTML = `<p>Найдено результатов: ${results.length}</p>`;
         searchContent.innerHTML = results.join("");
     } else {
         searchContent.innerHTML = "<p class='nothing'>Ничего не найдено</p>";
