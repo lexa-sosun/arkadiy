@@ -498,6 +498,7 @@ const information = {
     }
 }
 
+
 const globalLength = Object.keys(information).length;
 
 const urlParams = new URLSearchParams(window.location.search);
