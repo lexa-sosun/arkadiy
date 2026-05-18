@@ -8,10 +8,10 @@ body {
     text-align: center;
     transition: background-color 0.3s ease;
 }
-a.light-theme {
+body.light-theme a {
     color: #2b2b2f;
 }
-a.dark-theme {
+body.dark-theme a {
     color: #d4d4e3;
 }
 body.light-theme {
