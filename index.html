@@ -9,8 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="icons/favicon.ico" type="x/icon">
+    <style>
+        .animated {
+            transition: background-color 0.3s ease;
+        }
+    </style>
 </head>
-<body class="light-theme">
+<body class="light-theme animated">
 <div>
     <div class="themeChanger">
         <button id="themeToggle" class="themeChanger" onclick="changeTheme()" aria-label="Сменить тему"><img src="icons/dark.png" alt=""></button>
@@ -20,7 +25,7 @@
 </div>
 <label>
     <input type="text" placeholder="Введите запрос..." id="inputSearch" value="" spellcheck="false">
-    <button onclick="search()" class="searchButton">Искать</button>
+    <button onclick="search()" class="searchButton" id="buttonSearch">Искать</button>
 </label>
 <div id="count"></div>
 <div id="searchContent"></div>

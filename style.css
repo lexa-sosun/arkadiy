@@ -6,7 +6,6 @@
 }
 body {
     text-align: center;
-    transition: background-color 0.3s ease;
 }
 body.light-theme a {
     color: #2b2b2f;
@@ -38,7 +37,6 @@ h4.header {
     font-size: 30px;
     padding: 10px;
     overflow: hidden;
-    transition: background-color 0.3s ease;
     outline: none;
 }
 body.light-theme label input#inputSearch {
@@ -61,7 +59,6 @@ body.dark-theme label input#inputSearch {
     padding: 10px;
     cursor: pointer;
     overflow: hidden;
-    transition: background-color 0.3s ease;
 }
 body.light-theme label button.searchButton {
     border: #575757 solid 3px;
@@ -112,7 +109,6 @@ body.dark-theme label button.searchButton:active {
     margin-top: 45px;
     width: 700px;
     border-radius: 15px;
-    transition: background-color 0.3s ease;
 }
 body.light-theme div#searchContent div.block {
     background-color: #e5e5e5;
@@ -125,7 +121,10 @@ body.dark-theme div#searchContent div.block {
     font-size: 20px;
 }
 div.themeChanger {
-    position: relative;
+    position: fixed;
+    left: -8px;
+    width: 100%;
+    z-index: 10;
 }
 button.themeChanger {
     position: absolute;
@@ -133,7 +132,6 @@ button.themeChanger {
     right: 0;
     margin-top: -45px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     border: solid 0;
     border-radius: 15px;
     display: inline-flex;

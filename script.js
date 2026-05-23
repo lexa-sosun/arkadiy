@@ -555,7 +555,7 @@ function search() {
                     unique++
                 }
             }
-            results.push(`<div class='block'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p>
+            results.push(`<div class='block animated'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p>
                                 <div class="videoBlock">${video_block}</div>
                                 <div class="imageBlock">${image_block}</div>
                             </div>`);
