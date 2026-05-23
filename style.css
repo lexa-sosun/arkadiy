@@ -182,3 +182,20 @@ div#count {
     margin-bottom: -40px;
     font-size: 25px;
 }
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.error404 {
+    margin: 7px;
+}
+
+h1.error404 {
+    text-shadow: 0 0 10px #939dff, 0 0 20px #939dff;
+    font-size: 75px;
+}
