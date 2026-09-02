@@ -225,3 +225,25 @@ body.dark-theme .downloadBtn {
 body.dark-theme .downloadBtn:hover {
     background-color: #525252;
 }
+
+.icon-play {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.light-theme .rect {
+    background-color: #cccccc;
+}
+
+body.dark-theme .rect {
+    background-color: #3f3f3f;
+}

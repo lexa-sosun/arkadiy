@@ -141,11 +141,40 @@ document.addEventListener('click', async (event) => {
 
             clone.removeChild(clone.getElementsByClassName('topMenuCon')[0]);
             const colorsArray = {
-                'light-theme': '#fff',
-                'dark-theme': null
+                'light-theme': ['light' ,'#fff'],
+                'dark-theme': ['dark', null]
             }
 
-            const currentBgColor = colorsArray[document.body.classList[0]];
+            const videoBlock = clone.getElementsByClassName('videoBlock')[0];
+            console.log(videoBlock)
+            if (videoBlock) {
+
+                const videos = videoBlock.getElementsByClassName('video-container')[0].getElementsByClassName('infVideo');
+                
+                for (let v = 0; v < videos.length; v++) {
+
+                    const rect = videos[v].getBoundingClientRect();
+
+                    const rectDiv = document.createElement('div');
+                    rectDiv.className = 'rect';
+                    rectDiv.style.width = rect.width + 'px';
+                    rectDiv.style.height = rect.height + 'px';
+
+                    const iconBox = document.createElement('div');
+                    iconBox.className = 'icon-play';
+
+                    const img = document.createElement('img');
+                    img.src = `icons/play_${colorsArray[document.body.classList[0]][0]}.png`;
+                    img.alt = 'Воспроизвести';
+
+                    iconBox.appendChild(img);
+                    rectDiv.appendChild(iconBox);
+
+                    videos[v].parentNode.replaceChild(rectDiv, videos[v]);
+                }
+            }
+
+            const currentBgColor = colorsArray[document.body.classList[0]][1];
 
             try {
                 const canvas = await html2canvas(clone, {
