@@ -147,7 +147,7 @@ document.addEventListener('click', async (event) => {
 
             const videoBlock = clone.getElementsByClassName('videoBlock')[0];
             console.log(videoBlock)
-            if (videoBlock) {
+            if (videoBlock.innerHTML) {
 
                 const videos = videoBlock.getElementsByClassName('video-container')[0].getElementsByClassName('infVideo');
                 
