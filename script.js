@@ -165,7 +165,7 @@ document.addEventListener('click', async (event) => {
                 link.href = canvas.toDataURL('image/jpeg', 1.0);
                 link.click();
             } catch (error) {
-                console.error('Ошибка при создании скриншота:', error);
+                console.error('Ошибка:', error);
             } finally {
                 document.body.removeChild(clone);
             }

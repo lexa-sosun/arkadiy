@@ -1,6 +1,6 @@
 const themeButton = document.getElementById("themeToggle");
 
-function animateLoadedElements() {
+function animateElements() {
     document.getElementById("inputSearch").classList.add("animated");
     document.getElementById("themeToggle").classList.add("animated");
     document.getElementById("buttonSearch").classList.add("animated");
@@ -13,7 +13,8 @@ function recolorAllDownloadImages(theme = 'light') {
     }
 }
 
-function changeTheme() {
+toggleBtn = document.getElementById('themeToggle');
+toggleBtn.addEventListener('click', () =>  {
     const currentTheme = document.body.classList[0];
 
     if (currentTheme === 'light-theme') {
@@ -26,16 +27,14 @@ function changeTheme() {
         localStorage.setItem("theme", "light-theme");
         themeButton.innerHTML = '<img alt="" src="icons/dark.png">';
         recolorAllDownloadImages('light');
-        document.getElementById("inputSearch").classList.add("animated");
-        document.getElementById("themeToggle").classList.add("animated");
-        document.getElementById("buttonSearch").classList.add("animated");
+        animateElements();
     }
-}
+});
 
 let theme = localStorage.getItem("theme");
 if (!(theme)) {
     localStorage.setItem("theme", "light-theme");
-    theme = localStorage.getItem("theme")
+    theme = localStorage.getItem("theme");
 }
 window.addEventListener('load', function() {
     document.body.className = theme;
@@ -44,4 +43,11 @@ window.addEventListener('load', function() {
     } else {
         themeButton.innerHTML = '<img alt="" src="icons/light.png">';
     }
+
+    async function animateWithDelay() {
+        const delay = ms => new Promise(res => setTimeout(res, ms));
+        await delay(100);
+        animateElements();
+    }
+    animateWithDelay();
 });
