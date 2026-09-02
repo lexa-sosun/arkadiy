@@ -25,7 +25,7 @@ function search() {
 
     const currentUrl = window.location.href;
     let url = new URL(currentUrl)
-    url.searchParams.set('search', inputField.value);
+    url.searchParams.set('search', inputField.value.trim());
     window.history.pushState({}, '', url);
 
     let unique = 0;
