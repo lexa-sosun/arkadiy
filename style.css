@@ -182,3 +182,46 @@ div#count {
     margin-bottom: -40px;
     font-size: 25px;
 }
+
+.title {
+    margin-right: 70px;
+    margin-left: 70px;
+}
+
+.topMenuCon {
+    position: relative;
+}
+
+.downloadBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body.light-theme .downloadBtn {
+    background-color: #b0b0b0;
+}
+
+body.light-theme .downloadBtn:hover {
+    background-color: #a2a2a2;
+}
+
+body.dark-theme .downloadBtn {
+    background-color: #4b4b4b;
+}
+
+body.dark-theme .downloadBtn:hover {
+    background-color: #525252;
+}

@@ -1,5 +1,6 @@
 import information from './data.json' with { type: 'json' };
 import person from './person.json' with { type: 'json' };
+import html2canvas from 'html2canvas';
 
 const globalLength = Object.keys(information).length;
 
@@ -12,6 +13,12 @@ function deleteNullParam() {
 }
 
 function search() {
+    let currentTheme = document.body.classList[0];
+    if (currentTheme === 'dark-theme') {
+        currentTheme = 'dark';
+    } else {
+        currentTheme = 'light';
+    }
     const inputField = document.getElementById("inputSearch");
     const searchValue = inputField.value.toLowerCase().trim().replace(/ё/g, "е");
     let results = [], searchedFiles = [];
@@ -42,7 +49,8 @@ function search() {
                     unique++
                 }
             }
-            results.push(`<div class='block animated'><h1>${obj.title}</h1><p class="desc">${obj.desc}</p>
+            results.push(`<div class='block animated'><div class="topMenuCon"><span class="downloadBtn"><img class="downloadImg" src="icons/download_${currentTheme}.png" alt="download"></span></div>
+                                <h1 class="title">${obj.title}</h1><p class="desc">${obj.desc}</p>
                                 <div class="videoBlock">${video_block}</div>
                                 <div class="imageBlock">${image_block}</div>
                             </div>`);
@@ -115,3 +123,54 @@ const buttonSearch = document.getElementById('buttonSearch');
 buttonSearch.addEventListener('click', () => {
     search();
 });
+
+document.addEventListener('click', async (event) => {
+    const btn = event.target.closest('.downloadBtn');
+
+    if (btn) {
+        const parent = btn.parentElement.parentElement;
+
+        if (parent) {
+            const clone = parent.cloneNode(true);
+
+            clone.style.position = 'absolute';
+            clone.style.left = '-9999px';
+            clone.style.top = '-9999px';
+            clone.style.borderRadius = '0';
+            document.body.appendChild(clone);
+
+            clone.removeChild(clone.getElementsByClassName('topMenuCon')[0]);
+            const colorsArray = {
+                'light-theme': '#fff',
+                'dark-theme': null
+            }
+
+            const currentBgColor = colorsArray[document.body.classList[0]];
+
+            try {
+                const canvas = await html2canvas(clone, {
+                    logging: false,
+                    useCORS: true,
+                    scale: 3,
+                    backgroundColor: currentBgColor,
+                    imageTimeout: 0,
+                    allowTaint: false,
+                    foreignObjectRendering: false
+                });
+
+                const name = parent.getElementsByClassName('title')[0].textContent.trim();
+
+                const link = document.createElement('a');
+                link.download = name + '.jpg';
+                link.href = canvas.toDataURL('image/jpeg', 1.0);
+                link.click();
+            } catch (error) {
+                console.error('Ошибка при создании скриншота:', error);
+            } finally {
+                document.body.removeChild(clone);
+            }
+        }
+    }
+});
+
+
